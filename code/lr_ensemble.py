@@ -139,9 +139,6 @@ if __name__ == '__main__':
                             length+=1
                         else:
                             window+=1
-                    # add three classifier to the feature
-                    for i in range(len(label)-1):
-                        X_tr[i].append(copy(lr_three[i+1]))
                     model = LogisticRegression(C=0.2,penalty="l2",verbose=0,fit_intercept=False,solver="lbfgs",max_iter = 6400)
                     model = model.fit(X_tr[:119], y_tr[:119])
                     final_list_lr_ensemble_train_new += model.predict(X_tr[:119]).tolist()
