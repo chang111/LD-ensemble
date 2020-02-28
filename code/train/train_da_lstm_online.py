@@ -573,7 +573,7 @@ if __name__ == '__main__':
                 y_seq_train = copy(y_seq_train)+copy(y_seq_val)
                 y_seq_train = np.array(y_seq_train)
                 current_train_class=trainer.save_train(X_train, y_train, y_seq_train)
-                np.savetxt(args.gt[0]+str(args.steps)+"_"+split_date[1]+"_ALSTM_"+args.version+"_result_train.txt",current_train_class)
+                np.savetxt("data/DALSTM_test_result/"+args.gt[0]+str(args.steps)+"_"+split_date[1]+"_ALSTM_"+args.version+"_result.txt",current_train_class)
                 #print()
 
 

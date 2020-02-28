@@ -166,65 +166,53 @@ if __name__ == '__main__':
                     y_pred_valid = model.predict(X_valid)
                     #y_pred_train = model.predict(X_train)
                     y_pred = model.predict_proba(test_X, ntree_limit=model.best_ntree_limit)[:, 1]
-                    y_pred_train = model.predict_proba(train_X, ntree_limit=model.best_ntree_limit)[:,1]
+
                     y_pred = y_pred.reshape(-1, 1)
-                    y_pred_train = y_pred_train.reshape(-1, 1)
+
                     #prediction_each_folder = y_pred
                     if fold_n == 0:
-                        folder_1_train = y_pred_train
                         folder_1=y_pred
                         folder_1=folder_1.reshape(len(folder_1),1)
-                        folder_1_train = folder_1_train.reshape(len(folder_1_train),1)
                     elif fold_n == 1:
-                        folder_2_train = y_pred_train
+                        
                         folder_2=y_pred
                         folder_2=folder_2.reshape(len(folder_2),1)
-                        folder_2_train = folder_2_train.reshape(len(folder_2_train),1)
                     elif fold_n==2:
-                        folder_3_train = y_pred_train
+                        
                         folder_3 = y_pred
                         folder_3=folder_3.reshape(len(folder_3),1)
-                        folder_3_train = folder_3_train.reshape(len(folder_3_train),1)
                     elif fold_n==3:
-                        folder_4_train = y_pred_train
+                        
                         folder_4 = y_pred
                         folder_4=folder_4.reshape(len(folder_4),1)
-                        folder_4_train = folder_4_train.reshape(len(folder_4_train),1)
                     elif fold_n==4:
-                        folder_5_train = y_pred_train
+                        
                         folder_5=y_pred
                         folder_5=folder_5.reshape(len(folder_5),1)
-                        folder_5_train = folder_5_train.reshape(len(folder_5_train),1)
                     elif fold_n==5:
-                        folder_6_train = y_pred_train
+                        
                         folder_6=y_pred
                         folder_6=folder_6.reshape(len(folder_6),1)
-                        folder_6_train = folder_6_train.reshape(len(folder_6_train),1)
                     elif fold_n==6:
-                        folder_7_train = y_pred_train
+                        
                         folder_7=y_pred
                         folder_7=folder_7.reshape(len(folder_7),1)
-                        folder_7_train = folder_7_train.reshape(len(folder_7_train),1)
                     elif fold_n==7:
-                        folder_8_train = y_pred_train
+                        
                         folder_8=y_pred
                         folder_8=folder_8.reshape(len(folder_8),1)
-                        folder_8_train = folder_8_train.reshape(len(folder_8_train),1)
                     elif fold_n==8:
-                        folder_9_train = y_pred_train
+                        
                         folder_9=y_pred
                         folder_9=folder_9.reshape(len(folder_9),1)
-                        folder_9_train = folder_9_train.reshape(len(folder_9_train),1)
                     elif fold_n==9:
-                        folder_10_train = y_pred_train
                         folder_10=y_pred
-                        folder_10=folder_10.reshape(len(folder_10),1) 
-                        folder_10_train = folder_10_train.reshape(len(folder_10_train),1)
+                        folder_10=folder_10.reshape(len(folder_10),1)
                 #calculate the all folder voting
                 result = np.concatenate((folder_1,folder_2,folder_3,folder_4,folder_5,folder_6,folder_7,folder_8,folder_9,folder_10),axis=1)
-                result_train = np.concatenate((folder_1_train,folder_2_train,folder_3_train,folder_4_train,folder_5_train,folder_6_train,folder_7_train,folder_8_train,folder_9_train,folder_10_train),axis=1)
-                np.savetxt(args.ground_truth[0]+"_h"+str(args.steps)+"_"+split_date[1]+"_xgboost_"+args.version+".txt",result)
-                np.savetxt(args.ground_truth[0]+"_h"+str(args.steps)+"_"+split_date[1]+"_xgboost_train_"+args.version+".txt",result_train)
+                
+                np.savetxt("data/xgboost_test_result/"+args.ground_truth[0]+"_h"+str(args.steps)+"_"+split_date[1]+"_xgboost_"+args.version+".txt",result)
+                
                 final_list = []
                 for j in range(len(result)):
                     count_1=0
@@ -291,4 +279,4 @@ if __name__ == '__main__':
             ans = pd.concat([ans,pd.DataFrame({"average": ave})],axis = 1)
             ans.sort_values(by= "average",ascending = False)
 
-            pd.DataFrame(ans).to_csv("_".join(["XGB_online",args.ground_truth[0],args.version,str(args.lag),str(args.steps)+".csv"]))            
+            pd.DataFrame(ans).to_csv("_".join(["test_result/XGB_online",args.ground_truth[0],args.version,str(args.lag),str(args.steps)+".csv"]))            

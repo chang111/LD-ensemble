@@ -135,7 +135,7 @@ if __name__ == '__main__':
             time_series = time_series[columns]
             # initialize parameters for load data
             length = args.length
-            split_dates = rolling_specific_year("2012-07-01","2019-07-01",length)
+            split_dates = rolling_specific_year("2010-01-01","2020-01-01",length)
             #print(split_dates)
             
             split_dates  =  split_dates[:]
@@ -158,10 +158,10 @@ if __name__ == '__main__':
                 if args.xgboost==1:
                     print(args.xgboost)
                     norm_params = {'vol_norm':norm_volume,'ex_spread_norm':norm_ex,'spot_spread_norm':norm_3m_spread,
-                                'len_ma':len_ma,'len_update':len_update,'both':3,'strength':0.01,'xgboost':True}
+                                'len_ma':len_ma,'len_update':len_update,'both':3,'strength':0.01,'xgboost':True, 'DALSTM':False}
                 else:
                     norm_params = {'vol_norm':norm_volume,'ex_spread_norm':norm_ex,'spot_spread_norm':norm_3m_spread,
-                                'len_ma':len_ma,'len_update':len_update,'both':3,'strength':0.01,'xgboost':False}
+                                'len_ma':len_ma,'len_update':len_update,'both':3,'strength':0.01,'xgboost':False, 'DALSTM':False}
                 final_X_tr = []
                 final_y_tr = []
                 final_X_va = []
@@ -214,6 +214,6 @@ if __name__ == '__main__':
                     ans[split_date[1]+"_length"].append(len(y_va.flatten()))
                 prob = pure_LogReg.predict_proba(X_va)
 
-                #np.savetxt(args.ground_truth[0]+str(args.steps)+"_"+split_date[1]+"_lr_"+args.version+"_probability.txt",prob)
+                np.savetxt("data/lr_three_classifier/"+args.ground_truth[0]+str(args.steps)+"_"+split_date[1]+"_lr_ex2_"+args.version+"_probability.txt",prob)
 
-            pd.DataFrame(ans).to_csv("_".join(["log_reg_online_ex1",args.version,str(args.ground_truth[0]),str(args.steps),str(args.length)+".csv"]))
+            pd.DataFrame(ans).to_csv("_".join(["test_result/log_reg_online_classifier",args.version,str(args.ground_truth[0]),str(args.steps),str(args.length)+".csv"]))
