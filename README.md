@@ -12,12 +12,14 @@
 
 In this demo, we developed a total of eight algorithms. Four of them are independent algorithm models and the other four are integrated models:
   1. The LR binary model:
+  ```bash
     python code/train/train_log_reg_online.py -c exp/online_metal.conf -v v5 -s 1 -l 7 -C 0.001 -gt LME_Al_Close 
     python code/train/train_log_reg_online.py -c exp/online_metal.conf -v v5 -s 1 -l 1 -C 0.0001 -gt LME_Co_Close 
     python code/train/train_log_reg_online.py -c exp/online_metal.conf -v v5 -s 1 -l 7 -C 0.01 -gt LME_Ni_Close 
     python code/train/train_log_reg_online.py -c exp/online_metal.conf -v v5 -s 1 -l 5 -C 0.01 -gt LME_Ti_Close 
     python code/train/train_log_reg_online.py -c exp/online_metal.conf -v v5 -s 1 -l 10 -C 0.01 -gt LME_Le_Close 
     python code/train/train_log_reg_online.py -c exp/online_metal.conf -v v5 -s 1 -l 10 -C 0.001 -gt LME_Zi_Close
+   ```
  * The model performance will be found in `test_result/` folder.
  2.  The LR three classification model:
   python code/train/train_log_reg_online_classifier.py -c exp/online_metal.conf -v v5_ex2 -s 1 -l 5 -C 0.0001 -gt LME_Al_Close 
