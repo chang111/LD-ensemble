@@ -62,7 +62,7 @@ LD-ensemble/
 
 In this demo, we developed a total of eight algorithms. Four of them are single algorithm models and the other four are integrated models:
   * At first, we will train the model. And the parameter for four single algorithm is:
-    | Model | parameter |
+| Model | parameter |
 | :-----: | :-----: |
 | LR-binary | lag:[1,3,5,7,10] |
 | LR-three-class | lag:[1,3,5,7,10] |
