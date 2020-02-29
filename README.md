@@ -62,12 +62,14 @@ LD-ensemble/
 
 In this demo, we developed a total of eight algorithms. Four of them are single algorithm models and the other four are integrated models:
   * At first, we will train the model. And the parameter for four single algorithm is:
-| Model | parameter |
-| :-----: | :-----: |
-| LR-binary | lag:[1,3,5,7,10] |
-| LR-three-class | lag:[1,3,5,7,10] |
-| XGB | lag:[1,3,5,7,10] |
-| DA-RNN | lag:[1,3,5,7,10], hidden:[10,20,30,40,50] |
+
+      | Model | parameter |
+      | :-----: | :-----: |
+      | LR-binary | lag:[1,3,5,7,10] |
+      | LR-three-class | lag:[1,3,5,7,10] |
+      | XGB | lag:[1,3,5,7,10] |
+      | DA-RNN | lag:[1,3,5,7,10], hidden:[10,20,30,40,50] |
+
   * Then we will choose the best parameter from the validation result.
   * At the last we run the model online file with the best parameter. For example:
   ```bash
