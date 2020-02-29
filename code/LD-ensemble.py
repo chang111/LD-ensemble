@@ -15,7 +15,7 @@ from sklearn import tree
 if __name__ == '__main__':
     for horizon in [1]:
         for single_window in [10]:
-            for ground_truth in ["LME_Co_Close","LME_Al_Close","LME_Ni_Close","LME_Ti_Close","LME_Zi_Close","LME_Le_Close"]:
+            for ground_truth in ["LME_Co_Close","LME_Al_Close","LME_Ni_Close","LME_Ti_Close","LME_Zi_Close","LME_Le_Close"] :
                 for date in ["2015-01-01","2015-07-01","2016-01-01","2016-07-01","2017-01-01","2017-07-01","2018-01-01","2018-07-01","2019-01-01"]:
                     lr_error_v5 = []
                     xgb_error_v5 = []
@@ -142,7 +142,7 @@ if __name__ == '__main__':
                     # add three classifier to the feature
                     for i in range(len(label)-1):
                         X_tr[i].append(copy(lr_three[i+1]))
-                    model = LogisticRegression(C=0.2,penalty="l2",verbose=0,fit_intercept=False,solver="lbfgs",max_iter = 6400)
+                    model = LogisticRegression(C=1,penalty="l2",verbose=0,fit_intercept=False,solver="lbfgs",max_iter = 6400)
                     model = model.fit(X_tr[:119], y_tr[:119])
                     final_list_lr_ensemble_train_new += model.predict(X_tr[:119]).tolist()
                     final_list_lr_ensemble_train = copy(final_list_lr_ensemble_train)+final_list_lr_ensemble_train_new

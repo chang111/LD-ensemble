@@ -174,9 +174,8 @@ if __name__ == '__main__':
 
                 #load data
                 X_tr, y_tr, X_va, y_va, X_te, y_te, norm_check,column_list = load_data(copy(ts),LME_dates,horizon,args.ground_truth,lag,copy(split_date),norm_params,tech_params,version_params)
-                print(len(X_tr[0]))
+                #print(len(X_tr[0]))
                 #post load processing and metal id extension
-                """
                 X_tr = np.concatenate(X_tr)
                 X_tr = X_tr.reshape(len(X_tr),lag*len(column_list[0]))
                 y_tr = np.concatenate(y_tr)
@@ -218,8 +217,8 @@ if __name__ == '__main__':
                     ans[split_date[1]+"_acc"].append(acc)
                     ans[split_date[1]+"_length"].append(len(y_va.flatten()))
                 prob = pure_LogReg.predict_proba(X_va)
-                train_prediction = pure_LogReg.predict(X_tr)
-                #np.savetxt(args.ground_truth[0]+str(args.steps)+"_"+split_date[1]+"_lr_"+args.version+"_probability.txt",prob)
-                np.savetxt(args.ground_truth[0]+str(args.steps)+"_"+split_date[1]+"_lr_"+args.version+"_probability_train.txt",train_prediction)
+                #train_prediction = pure_LogReg.predict(X_tr)
+                np.savetxt("data/test/"+args.ground_truth[0]+str(args.steps)+"_"+split_date[1]+"_lr_"+args.version+"_probability.txt",prob)
+                #np.savetxt(args.ground_truth[0]+str(args.steps)+"_"+split_date[1]+"_lr_"+args.version+"_probability_train.txt",train_prediction)
 
-            pd.DataFrame(ans).to_csv("_".join(["log_reg_online",args.version,str(args.ground_truth[0]),str(args.steps)+".csv"]))"""
+            pd.DataFrame(ans).to_csv("_".join(["log_reg_online",args.version,str(args.ground_truth[0]),str(args.steps)+".csv"]))

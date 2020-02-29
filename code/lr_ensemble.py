@@ -28,7 +28,7 @@ if __name__ == '__main__':
                     lr_v5 = np.loadtxt("data/lr_test_result/"+ground_truth+str(horizon)+"_"+date+"_lr_v5_probability.txt")
                     xgboost_v5 = np.loadtxt("data/xgboost_test_result/"+ground_truth+"_"+"h"+str(horizon)+"_"+date+"_xgboost_v5.txt")
                     DALSTM_v5=np.loadtxt("data/DALSTM_test_result/"+'LME'+str(horizon)+"_"+date+"_ALSTM_"+"v5"+"_result.txt")
-                    ground_truths_list = ["LME_Co_Close","LME_Al_Close","LME_Ni_Close","LME_Ti_Close","LME_Zi_Close","LME_Le_Close"]
+                    ground_truths_list = ["LME_Co_Close","LME_Al_Close","LME_Ni_Close","LME_Ti_Close","LME_Zi_Close","LME_Le_Close"] 
                     lr_three = np.loadtxt("data/lr_three_classifier/"+ground_truth+"1"+"_"+date+"_lr_ex2_"+"v5_ex2"+"_probability.txt")                  
                     final_list_v5_lr = []
                     final_list_v5_xgb = []
@@ -139,7 +139,7 @@ if __name__ == '__main__':
                             length+=1
                         else:
                             window+=1
-                    model = LogisticRegression(C=0.2,penalty="l2",verbose=0,fit_intercept=False,solver="lbfgs",max_iter = 6400)
+                    model = LogisticRegression(C=1,penalty="l2",verbose=0,fit_intercept=False,solver="lbfgs",max_iter = 6400)
                     model = model.fit(X_tr[:119], y_tr[:119])
                     final_list_lr_ensemble_train_new += model.predict(X_tr[:119]).tolist()
                     final_list_lr_ensemble_train = copy(final_list_lr_ensemble_train)+final_list_lr_ensemble_train_new

@@ -123,7 +123,10 @@ if __name__ == '__main__':
                         else:
                             window+=1
                     print("the length of the y_test is {}".format(len(label)))
-                    print("the weight ensebmle for weight voting beta precision is {}".format(metrics.accuracy_score(label[:], final_list_1)))
+                    print("the lr result is {}".format(metrics.accuracy_score(label[:], final_list_v5_lr)))
+                    print("the XGB result is {}".format(metrics.accuracy_score(label[:], final_list_v5_xgb)))
+                    print("the DARNN result is {}".format(metrics.accuracy_score(label[:], final_list_v5_DALSTM)))
+                    print("the weight ensemble for weight voting beta precision is {}".format(metrics.accuracy_score(label[:], final_list_1)))
                     print("the horizon is {}".format(horizon))
                     print("the window size is {}".format(single_window))
                     print("the metal is {}".format(ground_truth))

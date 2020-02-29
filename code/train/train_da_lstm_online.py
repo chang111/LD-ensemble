@@ -9,7 +9,6 @@ from torch.autograd import Variable
 sys.path.insert(0, os.path.abspath(os.path.join(sys.path[0], '..')))
 from model.DALSTM import AttnEncoder, AttnDecoder
 from data.load_data import load_data
-from model.model_embedding import MultiHeadAttention, attention, bilstm
 from utils.construct_data import rolling_half_year
 from utils.version_control_functions import generate_version_params
 from torch import optim
@@ -377,10 +376,10 @@ if __name__ == '__main__':
     
     if version == -2:
         thresh = -0.04344493
-    os.chdir(os.path.abspath(sys.path[1]))
-    
+    os.chdir(os.path.abspath(sys.path[0]))
+    #print(sys.path[0])
     # read data configure file
-    with open(os.path.join(sys.path[1],args.data_configure_file)) as fin:
+    with open(os.path.join(sys.path[0],args.data_configure_file)) as fin:
         fname_columns = json.load(fin)
     args.gt = args.gt.split(",")
 
@@ -559,21 +558,40 @@ if __name__ == '__main__':
                 decoder_name = 'decoder-'+ '-date-' + split_date[1] + '-lag-' + str(window_size) + '-lr-' + str(lr) + '-hidden-' + str(hidden_state) + '-split-' + str(split) + '-version-'+ str(version) + "-horizon-"+ str(horizon) +"-metal-"+args.gt[0]+'.model'
                 trainer.load_model(encoder_name, decoder_name)
                 current_pred_class=trainer.test(X_test, y_test, y_seq_test)
-                np.savetxt(args.gt[0]+str(args.steps)+"_"+split_date[1]+"_ALSTM_"+args.version+"_result.txt",current_pred_class)
-                X_train = X_train.tolist()
-                X_val = X_val.tolist()
-                X_train = copy(X_train)+copy(X_val)
-                X_train = np.array(X_train)
-                y_train = y_train.tolist()
-                y_val = y_val.tolist()
-                y_train = copy(y_train)+copy(y_val)
-                y_train = np.array(y_train)
-                y_seq_train = y_seq_train.tolist()
-                y_seq_val = y_seq_val.tolist()
-                y_seq_train = copy(y_seq_train)+copy(y_seq_val)
-                y_seq_train = np.array(y_seq_train)
-                current_train_class=trainer.save_train(X_train, y_train, y_seq_train)
-                np.savetxt("data/DALSTM_test_result/"+args.gt[0]+str(args.steps)+"_"+split_date[1]+"_ALSTM_"+args.version+"_result.txt",current_train_class)
+                np.savetxt("data/DALSTM_test_result/"+args.gt[0]+str(args.steps)+"_"+split_date[1]+"_ALSTM_"+args.version+"_result.txt",current_pred_class)
+                #current_test_class = [1 if ele>thresh else 0 for ele in y_test]
+                #ground_truths_list = ["LME_Co_Close","LME_Al_Close","LME_Ni_Close","LME_Ti_Close","LME_Zi_Close","LME_Le_Close"]
+                #final_list = []
+                #column=['metal']
+                #column.append(split_date[1]+"_accu")
+                #column.append(split_date[1]+"_length")
+                #for z in range(len(ground_truths_list)):
+                #    new_final_list = []
+                    #column=['metal']
+                #    new_final_list.append(ground_truths_list[z])
+                #    length = len(current_pred_class)
+                #    metal = 6
+                #    day_number = int(length/6)
+                #    metal_list = []
+                #    label = []
+                #    for i in range(metal):
+                #        new_list = []
+                #        new_label = []
+                #        for j in range(day_number):
+                #            new_list.append(current_pred_class[j*6+i])
+                #            new_label.append(current_test_class[j*6+i])
+                #        metal_list.append(new_list)
+                #        label.append(new_label)
+                #    accu = accuracy_score(label[z],copy(metal_list[z]))
+                    #column.append(split_date[1]+"_accu")
+                    #column.append(split_date[1]+"_length")
+                #    new_final_list.append(copy(accu))
+                #    new_final_list.append(copy(day_number))
+                #    final_list.append(copy(new_final_list))
+                #print(final_list)
+                #final = pd.DataFrame(final_list,columns=column)
+                #final.to_csv("_".join(["ALSTM_online",split_date[1]+".csv"]))
+                #np.savetxt("data/DALSTM_test_result/"+args.gt[0]+str(args.steps)+"_"+split_date[1]+"_ALSTM_"+args.version+"_result.txt",current_train_class)
                 #print()
 
 
