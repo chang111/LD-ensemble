@@ -61,7 +61,7 @@ LD-ensemble/
 ### Demo
 
 In this demo, we developed a total of eight algorithms. Four of them are single algorithm models and the other four are integrated models:
-  * At first, we will train the model. And the parameter for four single algorithm is:
+  * At first, we will train the model. And parameters for four single algorithm is:
 
       | Model | parameter |
       | :-----: | :-----: |
