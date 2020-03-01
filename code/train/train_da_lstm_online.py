@@ -235,7 +235,7 @@ class Trainer:
         current_pred_class = [1 if ele>thresh else 0 for ele in y_pred_test]
         #np.savetxt(args.ground_truth[0]+str(args.steps)+"_"+split_date[1]+"_ALSTM_"+args.version+"_result.txt",prob)
         current_test_class = [1 if ele>thresh else 0 for ele in y]
-        print("the test accuracy: ",accuracy_score(current_pred_class,current_test_class))
+        #print("the test accuracy: ",accuracy_score(current_pred_class,current_test_class))
         return current_pred_class
     """
     def predict(self, x, y, y_seq):
