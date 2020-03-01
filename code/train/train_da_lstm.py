@@ -235,7 +235,7 @@ class Trainer:
         y_pred_test = self.predict(x, y, y_seq)
         current_pred_class = [1 if ele>thresh else 0 for ele in y_pred_test]
         current_test_class = [1 if ele>thresh else 0 for ele in y]
-        print("the test accuracy: ",accuracy_score(current_test_class,current_pred_class))
+        print("the validation accuracy: ",accuracy_score(current_test_class,current_pred_class))
     """
     def predict(self, x, y, y_seq):
         y_pred = np.zeros(x.shape[0])
