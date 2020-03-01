@@ -442,7 +442,7 @@ if __name__ == '__main__':
             ts = copy(time_series.loc[split_date[0]:split_dates[s+1][2]])
             # ,mklprint(args.gt)
             if args.gt[0] == "LME":
-                ground_truths_list = ['LME_Co_Close','LME_Al_Close','LME_Le_Close','LME_Ni_Close','LME_Zi_Close','LME_Ti_Close']
+                ground_truths_list = ["LME_Co_Close","LME_Al_Close","LME_Ni_Close","LME_Ti_Close","LME_Zi_Close","LME_Le_Close"]
             else:
                 ground_truths_list = ['China_Corn_Close','China_Cotton_Close','China_Soybeanoil_Close','China_Soybeanmeal_Close','China_Soybeantwo_Close','China_Sugar_Close']
             #load data
